@@ -1,0 +1,8 @@
+{
+  "name": "Remix Daraz Nepal - Online Shopping Mall",
+  "description": "Nepal\u0027s favorite online marketplace clone featuring Flash Sales, electronics, refrigerators, washing machines, secure Nepali payment gateways (eSewa, Khalti, IME Pay, Cards, COD), and AI product recommendation engine.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

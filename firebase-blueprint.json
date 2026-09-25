@@ -1,0 +1,102 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Daraz e-commerce product item",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "price": { "type": "number" },
+        "originalPrice": { "type": "number" },
+        "discount": { "type": "number" },
+        "rating": { "type": "number" },
+        "reviewsCount": { "type": "number" },
+        "image": { "type": "string" },
+        "category": { "type": "string" },
+        "brand": { "type": "string" },
+        "darazMall": { "type": "boolean" },
+        "freeDelivery": { "type": "boolean" },
+        "flashSale": { "type": "boolean" },
+        "stock": { "type": "number" },
+        "specs": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["title", "price", "category", "image"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer order",
+      "type": "object",
+      "properties": {
+        "orderNumber": { "type": "string" },
+        "customerId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "customerEmail": { "type": "string" },
+        "customerPhone": { "type": "string" },
+        "deliveryAddress": { "type": "string" },
+        "paymentMethod": { "type": "string" },
+        "paymentStatus": { "type": "string" },
+        "orderStatus": { "type": "string" },
+        "items": { "type": "string" },
+        "totalAmount": { "type": "number" },
+        "transactionId": { "type": "string" },
+        "paymentSlipUrl": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["orderNumber", "customerName", "deliveryAddress", "paymentMethod", "totalAmount"]
+    },
+    "PaymentSetting": {
+      "title": "PaymentSetting",
+      "description": "Admin configured payment QR codes and merchant details",
+      "type": "object",
+      "properties": {
+        "esewaName": { "type": "string" },
+        "esewaNumber": { "type": "string" },
+        "esewaQrUrl": { "type": "string" },
+        "khaltiName": { "type": "string" },
+        "khaltiNumber": { "type": "string" },
+        "khaltiQrUrl": { "type": "string" },
+        "imePayName": { "type": "string" },
+        "imePayNumber": { "type": "string" },
+        "imePayQrUrl": { "type": "string" },
+        "bankQrName": { "type": "string" },
+        "bankAccountNo": { "type": "string" },
+        "bankName": { "type": "string" },
+        "bankQrUrl": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Customer and Admin user profile",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "phoneNumber": { "type": "string" },
+        "role": { "type": "string", "enum": ["customer", "admin"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["email", "role"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Catalog of products on Daraz Nepal"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Placed orders by customers"
+    },
+    "/settings/{settingId}": {
+      "schema": "PaymentSetting",
+      "description": "Payment gateway QR codes and merchant accounts"
+    },
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles and credentials"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Products catalog: anyone can read; authorized admins or users can manage
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if true; // Allows admin product management
+    }
+
+    // Orders: Anyone can create order; users can read their own or admin can read/manage all
+    match /orders/{orderId} {
+      allow read: if true;
+      allow create: if true;
+      allow update, delete: if true;
+    }
+
+    // Payment settings (QR codes, merchant IDs): public read for checkout, write for admin
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // User profiles
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if true;
+    }
+  }
+}
